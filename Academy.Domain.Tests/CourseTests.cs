@@ -21,7 +21,7 @@ namespace Academy.Domain.Tests
             course.Name.Should().Be(name);
             course.IsOnline.Should().Be(isOnline);
             course.Tuition.Should().Be(tuition);
-
+            course.Sections.Should().BeEmpty();
         }
 
         [Fact]
@@ -39,6 +39,25 @@ namespace Academy.Domain.Tests
             var coursesBuilder = new CourseTestBuilder();
             Action course = () => coursesBuilder.WithTuition(0).Build();
             course.Should().ThrowExactly<CourseTuitionIsInvalidException>();
+        }
+
+
+        [Fact]
+        public void AddSection_ShouldAddNewSectionToSections_WhenIdAndNamePassed()
+        {
+            //arrange
+            var courseBuilder = new CourseTestBuilder();
+            var course = courseBuilder.Build();
+            var sectionToAdd = SectionFactory.Create();
+
+
+            //act
+            course.AddSection(sectionToAdd);
+
+
+            //assert
+            course.Sections.Should().ContainEquivalentOf(sectionToAdd);
+
         }
     }
 }

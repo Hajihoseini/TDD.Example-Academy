@@ -6,21 +6,22 @@ namespace Academy.Domain
     {
         public class Course
         {
-            public int Id = 1;
-            public string Name = "Programming";
-            public bool IsOnline = true;
-            public double Tuition = 1000;
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public bool IsOnline { get; set; }
+            public double Tuition { get; set; }
+            public List<Section> Sections { get; set; }
+
 
             public Course(int id, string name, bool isOnline, double tuition)
             {
                 GurdAgainstInvalidName(name);
-
                 GurdAgainstInvalidTuition(tuition);
-
                 Id = id;
                 Name = name;
                 IsOnline = isOnline;
                 Tuition = tuition;
+                Sections = new List<Section>();  
             }
 
 
@@ -35,6 +36,11 @@ namespace Academy.Domain
             {
                 if (string.IsNullOrWhiteSpace(name))
                     throw new CourseNameIsInvalidException();
+            }
+
+            public void AddSection(Section section)
+            {
+                Sections.Add(section);
             }
         }
     }
