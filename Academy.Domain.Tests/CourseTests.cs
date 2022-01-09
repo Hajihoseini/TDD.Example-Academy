@@ -1,7 +1,6 @@
 using FluentAssertions;
 using System;
 using Xunit;
-using static Academy.Domain.CourseTests;
 
 namespace Academy.Domain.Tests
 {
@@ -30,7 +29,7 @@ namespace Academy.Domain.Tests
         {
             var coursesBuilder = new CourseTestBuilder();
             Action course = () => coursesBuilder.WithName("").Build();
-            course.Should().Throw<Exception>();
+            course.Should().ThrowExactly<CourseNameIsInvalidException>();
         }
 
 
@@ -39,8 +38,7 @@ namespace Academy.Domain.Tests
         {
             var coursesBuilder = new CourseTestBuilder();
             Action course = () => coursesBuilder.WithTuition(0).Build();
-            
-            course.Should().Throw<Exception>();
+            course.Should().ThrowExactly<CourseTuitionIsInvalidException>();
         }
     }
 }

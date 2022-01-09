@@ -1,4 +1,6 @@
-﻿namespace Academy.Domain
+﻿
+
+namespace Academy.Domain
 {
     public partial class CourseTests
     {
@@ -21,16 +23,18 @@
                 Tuition = tuition;
             }
 
+
             private static void GurdAgainstInvalidTuition(double tuition)
             {
                 if (tuition <= 0)
-                    throw new Exception();
+                throw new CourseTuitionIsInvalidException();
             }
+
 
             private static void GurdAgainstInvalidName(string name)
             {
                 if (string.IsNullOrWhiteSpace(name))
-                    throw new Exception();
+                    throw new CourseNameIsInvalidException();
             }
         }
     }

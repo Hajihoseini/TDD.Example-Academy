@@ -9,26 +9,26 @@ namespace Academy.Domain.Tests
 {
     public class CourseTestBuilder
     {
-        const int id = 1;
-        string name = "Programming";
-        const bool isOnline = true;
-        double tuition = 1000;
+        private const int id = 1;
+        private string _name = "Programming";
+        private const bool IsOnline = true;
+        private double _tuition = 1000;
 
         public CourseTestBuilder WithName(string name)
         {
-            this.name = name;
+            _name = name;
             return this;    
         }
 
         public CourseTestBuilder WithTuition(double tuition)
         {
-            this.tuition = tuition;
+            _tuition = tuition;
             return this;
         }
 
         public Course Build()
         {
-            return new Course(id, name, isOnline, tuition);
+            return new Course(id, _name, IsOnline, _tuition);
         }
     }
 }
