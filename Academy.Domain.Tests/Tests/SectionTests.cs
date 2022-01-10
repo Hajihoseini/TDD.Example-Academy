@@ -1,10 +1,17 @@
-﻿using FluentAssertions;
+﻿using Academy.Domain.Tests.CollectionFixtures;
+using FluentAssertions;
 using Xunit;
 
 namespace Academy.Domain.Tests
 {
+    [Collection("Database collection")]
     public class SectionTests
     {
+        public SectionTests(DatabaseFixture databaseFixture)
+        {
+
+        }
+
         [Fact]
         public void Constructor_should_construct_section_properly()
         {
