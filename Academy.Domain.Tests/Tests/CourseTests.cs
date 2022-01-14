@@ -70,5 +70,51 @@ namespace Academy.Domain.Tests
             course.Sections.Should().ContainEquivalentOf(sectionToAdd);
 
         }
+
+        [Fact]
+        public void Should_BeEqual_when_IdIsEqual()
+        {
+            //arrang
+            const int sameId = 1;
+            var courseTestBuilder = new CourseTestBuilder();
+            var course1 = coursesBuilder.WithId(sameId).Build();
+            var course2 = coursesBuilder.WithId(sameId).Build();
+
+            //act 
+            var actual = course1.Equals(course2);
+
+            //assert
+            actual.Should().BeTrue();
+        }
+
+        [Fact]
+        public void Should_NotBeEqual_when_IdIsNotEqual()
+        {
+            //arrang
+           
+            var courseTestBuilder = new CourseTestBuilder();
+            var course1 = coursesBuilder.WithId(1).Build();
+            var course2 = coursesBuilder.WithId(2).Build();
+
+            //act
+            var actual = course1.Equals(course2);
+
+            //assert
+            actual.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Should_BeEqual_when_IdIsNull()
+        {
+            //arrang
+            var courseTestBuilder = new CourseTestBuilder();
+            var course1 = coursesBuilder.Build();
+
+            //act
+            var actual = course1.Equals(null);
+
+            //assert
+            actual.Should().BeFalse();  
+        }
     }
 }

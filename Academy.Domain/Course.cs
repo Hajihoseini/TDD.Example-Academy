@@ -2,8 +2,6 @@
 
 namespace Academy.Domain
 {
-    public partial class CourseTests
-    {
         public class Course
         {
             public int Id { get; set; }
@@ -42,6 +40,13 @@ namespace Academy.Domain
             {
                 Sections.Add(section);
             }
+
+            public override bool Equals(object obj)
+            {
+                if(obj is Course course) return false;
+                return Id == course.Id;
+            }
+
         }
-    }
+    
 }
